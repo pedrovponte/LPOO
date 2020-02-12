@@ -1,1 +1,1 @@
-Laboratorio de Programacao Orientada por Objetos
+Laboratório de Programação Orientada por Objetos
