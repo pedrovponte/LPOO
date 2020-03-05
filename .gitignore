@@ -5,3 +5,8 @@ Praticas/TP2/hero/.idea/
 Praticas/TP2/hero/.gradle/
 
 *.hprof
+out/
+.idea/
+.gradle/
+build/
+*.iml
