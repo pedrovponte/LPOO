@@ -1,0 +1,171 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: HeroController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.rules</a> ]
+</div>
+
+<h1>Coverage Summary for Class: HeroController (com.g35.rules)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HeroController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/ 27)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HeroController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/ 28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.rules;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g35.data.BlockModel;
+<i>4</i>&nbsp;import com.g35.data.EnemyModel;
+<i>5</i>&nbsp;import com.g35.data.HeroModel;
+<i>6</i>&nbsp;import com.g35.data.Position;
+<i>7</i>&nbsp;import com.g35.gui.ArenaView;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class HeroController {
+<i>12</i>&nbsp;    private HeroModel hero;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    public HeroController(HeroModel hero) {</b>
+<b class="fc"><i>15</i>&nbsp;        this.hero = hero;</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    public boolean moveHero(ArenaView gui, ArenaController.COMMAND command) {
+<b class="fc"><i>19</i>&nbsp;        Position newPosition = new Position(hero.getPosition());</b>
+<b class="fc"><i>20</i>&nbsp;        switch(command) {</b>
+<i>21</i>&nbsp;            case UP:
+<b class="fc"><i>22</i>&nbsp;                newPosition = newPosition.up(); break;</b>
+<i>23</i>&nbsp;            case RIGHT:
+<b class="fc"><i>24</i>&nbsp;                newPosition = newPosition.right(); break;</b>
+<i>25</i>&nbsp;            case DOWN:
+<b class="fc"><i>26</i>&nbsp;                newPosition = newPosition.down(); break;</b>
+<i>27</i>&nbsp;            case LEFT:
+<b class="fc"><i>28</i>&nbsp;                newPosition = newPosition.left(); break;</b>
+<i>29</i>&nbsp;        }
+<b class="fc"><i>30</i>&nbsp;        if (!checkLimitsCollision(newPosition, gui.limits)) {</b>
+<b class="fc"><i>31</i>&nbsp;            hero.setPosition(newPosition);</b>
+<b class="fc"><i>32</i>&nbsp;            return true;</b>
+<i>33</i>&nbsp;        }
+<b class="fc"><i>34</i>&nbsp;        return false;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public boolean checkLimitsCollision(Position position, List&lt;BlockModel&gt; limits) {
+<b class="fc"><i>38</i>&nbsp;        for (BlockModel limit : limits) {</b>
+<b class="fc"><i>39</i>&nbsp;            if (limit.getPosition().samePosition(position))</b>
+<b class="fc"><i>40</i>&nbsp;                return true;</b>
+<b class="fc"><i>41</i>&nbsp;        }</b>
+<b class="fc"><i>42</i>&nbsp;        return false;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public boolean checkEnemyCollision(EnemyModel enemy) {
+<i>46</i>&nbsp;        // Check Collisions with Position above hero
+<b class="fc"><i>47</i>&nbsp;        if (enemy.getPosition().samePosition(hero.getPosition().up()))</b>
+<b class="fc"><i>48</i>&nbsp;            return true;</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;        // Check Collisions with Position below hero
+<b class="fc"><i>51</i>&nbsp;        else if (enemy.getPosition().samePosition(hero.getPosition().down()))</b>
+<b class="fc"><i>52</i>&nbsp;            return true;</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;        // Check Collisions with Positions next to hero
+<b class="fc"><i>55</i>&nbsp;        else if (enemy.getPosition().samePosition(hero.getPosition().right()))</b>
+<b class="fc"><i>56</i>&nbsp;            return true;</b>
+<b class="fc"><i>57</i>&nbsp;        else if (enemy.getPosition().samePosition(hero.getPosition().left()))</b>
+<b class="fc"><i>58</i>&nbsp;            return true;</b>
+<i>59</i>&nbsp;
+<b class="fc"><i>60</i>&nbsp;        return enemy.getPosition().samePosition(hero.getPosition());</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

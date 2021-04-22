@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FollowEnemyController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.rules</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FollowEnemyController (com.g35.rules)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FollowEnemyController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.rules;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g35.data.ArenaModel;
+<i>4</i>&nbsp;import com.g35.data.EnemyModel;
+<i>5</i>&nbsp;import com.g35.data.FollowEnemyModel;
+<i>6</i>&nbsp;import com.g35.data.Position;
+<i>7</i>&nbsp;import com.g35.gui.ArenaView;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;public class FollowEnemyController extends EnemyController {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    public FollowEnemyController(List&lt;EnemyModel&gt; enemies) {
+<b class="fc"><i>15</i>&nbsp;        super(enemies);</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Override
+<i>19</i>&nbsp;    public void moveEnemy(ArenaView gui, ArenaModel arena, EnemyModel enemy) {
+<b class="fc"><i>20</i>&nbsp;        Position newPosition = new Position(enemy.getPosition());</b>
+<b class="fc"><i>21</i>&nbsp;        Position heroPosition = ((FollowEnemyModel) enemy).getHeroPosition();</b>
+<b class="fc"><i>22</i>&nbsp;        if (Math.abs(heroPosition.getX() - newPosition.getX()) &gt; Math.abs(heroPosition.getY() - newPosition.getY())) {</b>
+<b class="fc"><i>23</i>&nbsp;            if (heroPosition.getX() &lt; newPosition.getX()) {</b>
+<b class="fc"><i>24</i>&nbsp;                newPosition = newPosition.left();</b>
+<i>25</i>&nbsp;            }
+<i>26</i>&nbsp;            else {
+<b class="fc"><i>27</i>&nbsp;                newPosition = newPosition.right();</b>
+<i>28</i>&nbsp;            }
+<i>29</i>&nbsp;        }
+<i>30</i>&nbsp;        else {
+<b class="fc"><i>31</i>&nbsp;            if (heroPosition.getY() &gt; newPosition.getY()) {</b>
+<b class="fc"><i>32</i>&nbsp;                newPosition = newPosition.down();</b>
+<i>33</i>&nbsp;            }
+<i>34</i>&nbsp;            else {
+<b class="fc"><i>35</i>&nbsp;                newPosition = newPosition.up();</b>
+<i>36</i>&nbsp;            }
+<i>37</i>&nbsp;        }
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;        if (!checkLimitsCollision(newPosition, gui.limits) &amp;&amp; !checkEnemiesCollision(newPosition, arena)) {</b>
+<b class="fc"><i>40</i>&nbsp;            enemy.setPosition(newPosition);</b>
+<i>41</i>&nbsp;        }
+<b class="fc"><i>42</i>&nbsp;    }</b>
+<i>43</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

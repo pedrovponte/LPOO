@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ReadFiles</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.files</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ReadFiles (com.g35.files)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReadFiles</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,6%
+  </span>
+  <span class="absValue">
+    (31/ 35)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.files;
+<i>2</i>&nbsp;import com.g35.data.*;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import java.io.File;
+<i>5</i>&nbsp;import java.io.FileNotFoundException;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;import java.util.Scanner;
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;public class ReadFiles {</b>
+<i>11</i>&nbsp;     public static List&lt;BlockComposite&gt; read(final List&lt;BlockModel&gt; list, String file) {
+<b class="fc"><i>12</i>&nbsp;         List&lt;BlockComposite&gt; groupBlocks = new ArrayList&lt;&gt;();</b>
+<i>13</i>&nbsp;         try {
+<b class="fc"><i>14</i>&nbsp;            File myObj = new File(file);</b>
+<b class="fc"><i>15</i>&nbsp;            Scanner myReader = new Scanner(myObj);</b>
+<b class="fc"><i>16</i>&nbsp;            List&lt;List&lt;BlockComposite&gt;&gt; blockList = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>17</i>&nbsp;            int groupID = 0;</b>
+<i>18</i>&nbsp;            int temp;
+<b class="fc"><i>19</i>&nbsp;            int index = 0;</b>
+<b class="fc"><i>20</i>&nbsp;            int level = 1;</b>
+<b class="fc"><i>21</i>&nbsp;             switch (file) {</b>
+<i>22</i>&nbsp;                 case &quot;Arenas/Level_1/Pattern.txt&quot;:
+<b class="fc"><i>23</i>&nbsp;                     level = 1;</b>
+<b class="fc"><i>24</i>&nbsp;                     break;</b>
+<i>25</i>&nbsp;                 case &quot;Arenas/Level_2/Pattern.txt&quot;:
+<b class="fc"><i>26</i>&nbsp;                     level = 2;</b>
+<b class="fc"><i>27</i>&nbsp;                     break;</b>
+<i>28</i>&nbsp;                 case &quot;Arenas/Level_3/Pattern.txt&quot;:
+<b class="fc"><i>29</i>&nbsp;                     level = 3;</b>
+<i>30</i>&nbsp;                     break;
+<i>31</i>&nbsp;             }
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;            while (myReader.hasNextLine()) {</b>
+<b class="fc"><i>34</i>&nbsp;                String data = myReader.nextLine();</b>
+<b class="fc"><i>35</i>&nbsp;                String[] tokens = data.split(&quot; &quot;);</b>
+<b class="fc"><i>36</i>&nbsp;                for (String token : tokens)</b>
+<i>37</i>&nbsp;                {
+<b class="fc"><i>38</i>&nbsp;                    temp = Integer.parseInt(token);</b>
+<b class="fc"><i>39</i>&nbsp;                    if (temp &gt; groupID)</b>
+<i>40</i>&nbsp;                    {
+<b class="fc"><i>41</i>&nbsp;                        groupID = temp;</b>
+<b class="fc"><i>42</i>&nbsp;                        List&lt;BlockComposite&gt; blockModels = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>43</i>&nbsp;                        blockList.add(blockModels);</b>
+<i>44</i>&nbsp;                    }
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;                    (blockList.get(temp - 1)).add(list.get(index));</b>
+<b class="fc"><i>47</i>&nbsp;                    index++;</b>
+<i>48</i>&nbsp;                }
+<b class="fc"><i>49</i>&nbsp;            }</b>
+<b class="fc"><i>50</i>&nbsp;            myReader.close();</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;            for(List&lt;BlockComposite&gt; blocks_list : blockList){</b>
+<b class="fc"><i>53</i>&nbsp;                groupBlocks.add(new BlockGroup(blocks_list, level));</b>
+<b class="fc"><i>54</i>&nbsp;            }</b>
+<b class="nc"><i>55</i>&nbsp;         } catch (FileNotFoundException e) {</b>
+<b class="nc"><i>56</i>&nbsp;             System.out.println(&quot;An error occurred.&quot;);</b>
+<b class="nc"><i>57</i>&nbsp;             e.printStackTrace();</b>
+<b class="fc"><i>58</i>&nbsp;         }</b>
+<b class="fc"><i>59</i>&nbsp;        return groupBlocks;</b>
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

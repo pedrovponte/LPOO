@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TopBarView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.gui</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TopBarView (com.g35.gui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TopBarView</td>
+<td class="coverageStat">
+  <span class="percent">
+    85,7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94%
+  </span>
+  <span class="absValue">
+    (47/ 50)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$3KCTGlxt</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$5OKQdtk2</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$8mnKLWX9</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$evAsMxWg</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$jj7lX8XO</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$NUOkvtDe</td>
+  </tr>
+  <tr>
+    <td class="name">TopBarView$MockitoMock$1110178679$auxiliary$sIsIsF2v</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    85,7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94%
+  </span>
+  <span class="absValue">
+    (47/ 50)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.gui;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.googlecode.lanterna.SGR;
+<i>4</i>&nbsp;import com.googlecode.lanterna.TerminalPosition;
+<i>5</i>&nbsp;import com.googlecode.lanterna.TextColor;
+<i>6</i>&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+<i>7</i>&nbsp;import com.g35.data.*;
+<i>8</i>&nbsp;import com.g35.observer.Observable;
+<i>9</i>&nbsp;import com.g35.observer.Observer;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.ArrayList;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class TopBarView extends Observable&lt;TopBarView&gt; {
+<i>15</i>&nbsp;    private TextGraphics graphics;
+<i>16</i>&nbsp;    private TopBarModel topBarModel;
+<i>17</i>&nbsp;    private TopBarModel timeTopBar;
+<i>18</i>&nbsp;    public List&lt;BlockModel&gt; topBlocks;
+<i>19</i>&nbsp;    public Observer&lt;BlockModel&gt; blockModelObserver;
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;    public TopBarView(ArenaView gui) {</b>
+<b class="fc"><i>22</i>&nbsp;        this.graphics = gui.getGraphics();</b>
+<b class="fc"><i>23</i>&nbsp;        topBlocks = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>24</i>&nbsp;        topBarModel = new TopBarModel(80, 5, gui);</b>
+<b class="fc"><i>25</i>&nbsp;        timeTopBar = new TopBarModel(102-topBarModel.getWidth(),5, gui);</b>
+<b class="fc"><i>26</i>&nbsp;        blockModelObserver = new BlockView(graphics);</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void paint(int score) {
+<b class="fc"><i>30</i>&nbsp;        paintColorSpace();</b>
+<b class="fc"><i>31</i>&nbsp;        paintClockSpace();</b>
+<b class="fc"><i>32</i>&nbsp;        paintColorSurrounding();</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;        notifyTopBlocks();</b>
+<b class="fc"><i>35</i>&nbsp;        graphics.setBackgroundColor(TextColor.Factory.fromString(&quot;#5A5A5A&quot;));</b>
+<b class="fc"><i>36</i>&nbsp;        graphics.setForegroundColor(TextColor.Factory.fromString(&quot;#000000&quot;));</b>
+<b class="fc"><i>37</i>&nbsp;        graphics.enableModifiers(SGR.BOLD);</b>
+<b class="fc"><i>38</i>&nbsp;        graphics.putString(5, 2, &quot;SCORE: &quot;);</b>
+<b class="fc"><i>39</i>&nbsp;        graphics.putString(new TerminalPosition(12,2), String.valueOf(score));</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    private void paintColorSpace()
+<i>43</i>&nbsp;    {
+<b class="fc"><i>44</i>&nbsp;        for (int i=0; i&lt;topBarModel.getHeight();i++) {</b>
+<b class="fc"><i>45</i>&nbsp;            for (int j=0; j&lt;topBarModel.getWidth();j++) {</b>
+<b class="fc"><i>46</i>&nbsp;                BlockModel block = new BlockModel(new Position(j,i), topBarModel.getColor());</b>
+<b class="fc"><i>47</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>48</i>&nbsp;                topBlocks.add(block);</b>
+<i>49</i>&nbsp;            }
+<i>50</i>&nbsp;        }
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    private void paintClockSpace()
+<i>54</i>&nbsp;    {
+<b class="fc"><i>55</i>&nbsp;        for (int i=1;i&lt;timeTopBar.getHeight();i++)</b>
+<i>56</i>&nbsp;        {
+<b class="fc"><i>57</i>&nbsp;            for (int j=2;j&lt;2+timeTopBar.getWidth();j++)</b>
+<i>58</i>&nbsp;            {
+<b class="fc"><i>59</i>&nbsp;                BlockModel block = new BlockModel(new Position(j,i), new Color(&quot;#5A5A5A&quot;));</b>
+<b class="fc"><i>60</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>61</i>&nbsp;                topBlocks.add(block);</b>
+<i>62</i>&nbsp;            }
+<i>63</i>&nbsp;        }
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    private void paintColorSurrounding()
+<i>67</i>&nbsp;    {
+<b class="fc"><i>68</i>&nbsp;        for (int j=0;j&lt;topBarModel.getWidth()+timeTopBar.getWidth();j++)</b>
+<i>69</i>&nbsp;        {
+<b class="fc"><i>70</i>&nbsp;            for (int i=0;i&lt;1;i++)</b>
+<i>71</i>&nbsp;            {
+<b class="fc"><i>72</i>&nbsp;                BlockModel block = new BlockModel(new Position(j,i), new Color(&quot;#78787a&quot;));</b>
+<b class="fc"><i>73</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>74</i>&nbsp;                topBlocks.add(block);</b>
+<i>75</i>&nbsp;            }
+<i>76</i>&nbsp;        }
+<b class="fc"><i>77</i>&nbsp;        for (int i=0;i&lt;topBarModel.getHeight();i++)</b>
+<i>78</i>&nbsp;        {
+<b class="fc"><i>79</i>&nbsp;            for (int j=0;j&lt;2;j++)</b>
+<i>80</i>&nbsp;            {
+<b class="fc"><i>81</i>&nbsp;                BlockModel block = new BlockModel(new Position(j,i), new Color(&quot;#78787a&quot;));</b>
+<b class="fc"><i>82</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>83</i>&nbsp;                topBlocks.add(block);</b>
+<i>84</i>&nbsp;            }
+<i>85</i>&nbsp;
+<b class="fc"><i>86</i>&nbsp;            for (int j=100;j&lt;=102;j++)</b>
+<i>87</i>&nbsp;            {
+<b class="fc"><i>88</i>&nbsp;                BlockModel block = new BlockModel(new Position(j,i), new Color(&quot;#78787a&quot;));</b>
+<b class="fc"><i>89</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>90</i>&nbsp;                topBlocks.add(block);</b>
+<i>91</i>&nbsp;            }
+<i>92</i>&nbsp;        }
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public void notifyTopBlocks() {
+<b class="fc"><i>96</i>&nbsp;        for(BlockModel blockModel:topBlocks)</b>
+<b class="fc"><i>97</i>&nbsp;            blockModel.notifyObservers(blockModel);</b>
+<b class="fc"><i>98</i>&nbsp;    }</b>
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;    public Color changeToRandomColor(int score) {
+<b class="nc"><i>101</i>&nbsp;        topBarModel.newColor();</b>
+<b class="nc"><i>102</i>&nbsp;        paint(score);</b>
+<b class="nc"><i>103</i>&nbsp;        return topBarModel.getColor();</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

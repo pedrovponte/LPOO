@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GameOverView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.gui</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GameOverView (com.g35.gui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameOverView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,6%
+  </span>
+  <span class="absValue">
+    (41/ 42)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameOverView$MockitoMock$1085728028</td>
+  </tr>
+  <tr>
+    <td class="name">GameOverView$MockitoMock$1085728028$auxiliary$4DwD43xt</td>
+  </tr>
+  <tr>
+    <td class="name">GameOverView$MockitoMock$1085728028$auxiliary$8DwuTXA7</td>
+  </tr>
+  <tr>
+    <td class="name">GameOverView$MockitoMock$1085728028$auxiliary$t2Xa94ZA</td>
+  </tr>
+  <tr>
+    <td class="name">GameOverView$MockitoMock$1085728028$auxiliary$WUNqu2cX</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,6%
+  </span>
+  <span class="absValue">
+    (41/ 42)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.gui;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.googlecode.lanterna.TerminalPosition;
+<i>4</i>&nbsp;import com.googlecode.lanterna.TerminalSize;
+<i>5</i>&nbsp;import com.googlecode.lanterna.TextColor;
+<i>6</i>&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+<i>7</i>&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+<i>8</i>&nbsp;import com.googlecode.lanterna.input.KeyType;
+<i>9</i>&nbsp;import com.googlecode.lanterna.screen.Screen;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.io.IOException;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;public class GameOverView {
+<i>14</i>&nbsp;    private Screen screen;
+<i>15</i>&nbsp;    private TextGraphics graphics;
+<i>16</i>&nbsp;
+<b class="fc"><i>17</i>&nbsp;    public GameOverView(Screen screen, TextGraphics graphics) {</b>
+<b class="fc"><i>18</i>&nbsp;        this.screen=screen;</b>
+<b class="fc"><i>19</i>&nbsp;        this.graphics=graphics;</b>
+<b class="fc"><i>20</i>&nbsp;    }</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public void drawGameOver(int score) throws IOException {
+<b class="fc"><i>23</i>&nbsp;        screen.clear();</b>
+<b class="fc"><i>24</i>&nbsp;        graphics.setBackgroundColor(TextColor.Factory.fromString(&quot;#ffffff&quot;));</b>
+<b class="fc"><i>25</i>&nbsp;        graphics.setForegroundColor(TextColor.Factory.fromString(&quot;#000000&quot;));</b>
+<b class="fc"><i>26</i>&nbsp;        graphics.fillRectangle(new TerminalPosition(0,0), new TerminalSize(102, 49), &#39; &#39;);</b>
+<b class="fc"><i>27</i>&nbsp;        graphics.putString(20,10,&quot;   ____    _    __  __ _____    _____     _______ ____  &quot;);</b>
+<b class="fc"><i>28</i>&nbsp;        graphics.putString(20,11,&quot;  / ___|  / \\  |  \\/  | ____|  / _ \\ \\   / / ____|  _ \\ &quot;);</b>
+<b class="fc"><i>29</i>&nbsp;        graphics.putString(20,12,&quot; | |  _  / _ \\ | |\\/| |  _|   | | | \\ \\ / /|  _| | |_) |&quot;);</b>
+<b class="fc"><i>30</i>&nbsp;        graphics.putString(20,13,&quot; | |_| |/ ___ \\| |  | | |___  | |_| |\\ V / | |___|  _ &lt; &quot;);</b>
+<b class="fc"><i>31</i>&nbsp;        graphics.putString(20,14,&quot;  \\____/_/   \\_\\_|  |_|_____|  \\___/  \\_/  |_____|_| \\_\\&quot;);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        graphics.putString(15,20,&quot;         , ,\\ ,&#39;\\,&#39;\\ ,&#39;\\ ,\\ ,&quot;);</b>
+<b class="fc"><i>34</i>&nbsp;        graphics.putString(15,21,&quot;   ,  ;\\/ \\&#39; `&#39;     `   &#39;  /|&quot;);</b>
+<b class="fc"><i>35</i>&nbsp;        graphics.putString(15,22,&quot;   |\\/                      |&quot;);</b>
+<b class="fc"><i>36</i>&nbsp;        graphics.putString(15,23,&quot;   :                        |&quot;);</b>
+<b class="fc"><i>37</i>&nbsp;        graphics.putString(15,24,&quot;   :                        |&quot;);</b>
+<b class="fc"><i>38</i>&nbsp;        graphics.putString(60,24,&quot;Final Score: &quot; + score);</b>
+<b class="fc"><i>39</i>&nbsp;        graphics.putString(15,25,&quot;    |                       |&quot;);</b>
+<b class="fc"><i>40</i>&nbsp;        graphics.putString(15,26,&quot;    |                       |&quot;);</b>
+<b class="fc"><i>41</i>&nbsp;        graphics.putString(15,27,&quot;    :               -.     _|&quot;);</b>
+<b class="fc"><i>42</i>&nbsp;        graphics.putString(15,28,&quot;     :                \\     `.&quot;);</b>
+<b class="fc"><i>43</i>&nbsp;        graphics.putString(15,29,&quot;     |         ________:______\\&quot;);</b>
+<b class="fc"><i>44</i>&nbsp;        graphics.putString(15,30,&quot;     :       ,&#39;o       / o    ;&quot;);</b>
+<b class="fc"><i>45</i>&nbsp;        graphics.putString(15,31,&quot;     :       \\       ,&#39;-----./&quot;);</b>
+<b class="fc"><i>46</i>&nbsp;        graphics.putString(15,32,&quot;      \\_      `--.--&#39;        )&quot;);</b>
+<b class="fc"><i>47</i>&nbsp;        graphics.putString(15,33,&quot;     ,` `.              ,---&#39;|&quot;);</b>
+<b class="fc"><i>48</i>&nbsp;        graphics.putString(15,34,&quot;     : `                     |&quot;);</b>
+<b class="fc"><i>49</i>&nbsp;        graphics.putString(15,35,&quot;      `,-&#39;                   |&quot;);</b>
+<b class="fc"><i>50</i>&nbsp;        graphics.putString(15,36,&quot;      /      ,---.          ,&#39;&quot;);</b>
+<b class="fc"><i>51</i>&nbsp;        graphics.putString(15,37,&quot;   ,-&#39;            `-,------&#39;&quot;);</b>
+<b class="fc"><i>52</i>&nbsp;        graphics.putString(15,38,&quot;  &#39;   `.        ,--&#39;&quot;);</b>
+<b class="fc"><i>53</i>&nbsp;        graphics.putString(15,39,&quot;        `-.____/ &quot;);</b>
+<b class="fc"><i>54</i>&nbsp;        graphics.putString(15,40,&quot;                \\&quot;);</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;
+<b class="fc"><i>57</i>&nbsp;        screen.refresh();</b>
+<b class="fc"><i>58</i>&nbsp;        getCommand();</b>
+<b class="fc"><i>59</i>&nbsp;    }</b>
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public void getCommand() throws IOException {
+<i>62</i>&nbsp;        while (true) {
+<b class="fc"><i>63</i>&nbsp;            KeyStroke key = screen.readInput();</b>
+<i>64</i>&nbsp;
+<b class="fc"><i>65</i>&nbsp;            if (key.getKeyType() == KeyType.Enter) break;</b>
+<b class="nc"><i>66</i>&nbsp;        }</b>
+<b class="fc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

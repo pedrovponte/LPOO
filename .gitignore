@@ -10,3 +10,12 @@ out/
 .gradle/
 build/
 *.iml
+
+Projeto/ColorParty/.gradle/
+Projeto/ColorParty/build/
+Projeto/ColorParty/out/
+Projeto/ColorParty/.output/
+Projeto/ColorParty/.classpath
+Projeto/ColorParty/.project
+Projeto/ColorParty/.settings/
+Projeto/ColorParty/bin/

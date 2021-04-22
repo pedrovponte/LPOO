@@ -1,0 +1,182 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TimeView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.gui</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TimeView (com.g35.gui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TimeView</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,1%
+  </span>
+  <span class="absValue">
+    (27/ 29)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$cWZIuUWY</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$GciLzwCa</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$gX6AuFAT</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$hn7Ifor4</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$K0fczEPT</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$Lz2u5dQd</td>
+  </tr>
+  <tr>
+    <td class="name">TimeView$MockitoMock$1088413808$auxiliary$w93tpsJS</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,1%
+  </span>
+  <span class="absValue">
+    (27/ 29)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.gui;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.googlecode.lanterna.SGR;
+<i>4</i>&nbsp;import com.googlecode.lanterna.TerminalPosition;
+<i>5</i>&nbsp;import com.googlecode.lanterna.TextColor;
+<i>6</i>&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+<i>7</i>&nbsp;import com.googlecode.lanterna.screen.Screen;
+<i>8</i>&nbsp;import com.g35.data.*;
+<i>9</i>&nbsp;import com.g35.observer.Observer;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.ArrayList;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class TimeView {
+<i>15</i>&nbsp;    TimeModel time;
+<i>16</i>&nbsp;    Position position;
+<i>17</i>&nbsp;    private TextGraphics graphics;
+<i>18</i>&nbsp;    private TopBarModel topBarModel;
+<i>19</i>&nbsp;    private TopBarModel timeTopBar;
+<i>20</i>&nbsp;    public List&lt;BlockModel&gt; topBlocks;
+<i>21</i>&nbsp;    public Observer&lt;BlockModel&gt; blockModelObserver;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public TimeView(ArenaView gui) {</b>
+<b class="fc"><i>24</i>&nbsp;        this.graphics = gui.getGraphics();</b>
+<b class="fc"><i>25</i>&nbsp;        this.time=new TimeModel(10);</b>
+<b class="fc"><i>26</i>&nbsp;        topBlocks = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>27</i>&nbsp;        blockModelObserver = new BlockView(graphics);</b>
+<b class="fc"><i>28</i>&nbsp;        topBarModel = new TopBarModel(80, 5, gui);</b>
+<b class="fc"><i>29</i>&nbsp;        timeTopBar = new TopBarModel(102-topBarModel.getWidth(),5, gui);</b>
+<b class="fc"><i>30</i>&nbsp;        position = new Position(93,2);</b>
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public void setTime(TimeModel time) {
+<b class="nc"><i>34</i>&nbsp;        this.time = time;</b>
+<b class="nc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public void drawTime()
+<i>38</i>&nbsp;    {
+<b class="fc"><i>39</i>&nbsp;        fill();</b>
+<b class="fc"><i>40</i>&nbsp;        notifyTopBlocks();</b>
+<b class="fc"><i>41</i>&nbsp;        graphics.setForegroundColor(TextColor.Factory.fromString(&quot;#000000&quot;));</b>
+<b class="fc"><i>42</i>&nbsp;        graphics.enableModifiers(SGR.BOLD);</b>
+<b class="fc"><i>43</i>&nbsp;        graphics.putString(86, 2, &quot;TIME: &quot;);</b>
+<b class="fc"><i>44</i>&nbsp;        print_Number();</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void fill()
+<i>48</i>&nbsp;    {
+<b class="fc"><i>49</i>&nbsp;        for (int i=1;i&lt;timeTopBar.getHeight();i++)</b>
+<i>50</i>&nbsp;        {
+<b class="fc"><i>51</i>&nbsp;            for (int j=topBarModel.getWidth();j&lt;timeTopBar.getWidth()+topBarModel.getWidth()-2;j++)</b>
+<i>52</i>&nbsp;            {
+<b class="fc"><i>53</i>&nbsp;                BlockModel block = new BlockModel(new Position(j, i), new Color(&quot;#5A5A5A&quot;));</b>
+<b class="fc"><i>54</i>&nbsp;                block.addObserver(blockModelObserver);</b>
+<b class="fc"><i>55</i>&nbsp;                topBlocks.add(block);</b>
+<i>56</i>&nbsp;            }
+<i>57</i>&nbsp;        }
+<b class="fc"><i>58</i>&nbsp;    }</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    void print_Number() {
+<b class="fc"><i>61</i>&nbsp;        graphics.putString(new TerminalPosition(position.getX(),position.getY()), String.valueOf(time.getTime()));</b>
+<b class="fc"><i>62</i>&nbsp;    }</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    public void notifyTopBlocks() {
+<b class="fc"><i>65</i>&nbsp;        for(BlockModel blockModel:topBlocks)</b>
+<b class="fc"><i>66</i>&nbsp;            blockModel.notifyObservers(blockModel);</b>
+<b class="fc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

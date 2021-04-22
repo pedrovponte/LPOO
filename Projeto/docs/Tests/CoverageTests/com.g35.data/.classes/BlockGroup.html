@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BlockGroup</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BlockGroup (com.g35.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BlockGroup</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (6/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (52/ 65)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.g35.observer.Observable;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;import java.util.Random;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class BlockGroup extends Observable&lt;BlockGroup&gt; implements BlockComposite {
+<i>9</i>&nbsp;    private List&lt;BlockComposite&gt; blockList;
+<i>10</i>&nbsp;    private int level;
+<b class="fc"><i>11</i>&nbsp;    private static int index = 0;</b>
+<b class="fc"><i>12</i>&nbsp;    private static int line = 0;</b>
+<b class="fc"><i>13</i>&nbsp;    private static int column = 0;</b>
+<b class="fc"><i>14</i>&nbsp;    private static int[][] matrix_index = new int[14][32];</b>
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    public BlockGroup(List&lt;BlockComposite&gt; blockList, int level) {</b>
+<b class="fc"><i>17</i>&nbsp;        this.blockList = blockList;</b>
+<b class="fc"><i>18</i>&nbsp;        this.level = level;</b>
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Override
+<i>22</i>&nbsp;    public Color getColor() {
+<b class="nc"><i>23</i>&nbsp;        return blockList.get(0).getColor();     // All elements of a group have the same color</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public void differentColors() {
+<b class="fc"><i>27</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="fc"><i>28</i>&nbsp;            block.randomColor();</b>
+<b class="fc"><i>29</i>&nbsp;        }</b>
+<b class="fc"><i>30</i>&nbsp;        line = 0;</b>
+<b class="fc"><i>31</i>&nbsp;        column = 0;</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Override
+<i>35</i>&nbsp;    public void randomColor() {
+<b class="fc"><i>36</i>&nbsp;        if (level == 1 || level == 2)</b>
+<b class="fc"><i>37</i>&nbsp;            putDifferentColors();</b>
+<i>38</i>&nbsp;        else {
+<b class="fc"><i>39</i>&nbsp;            Random rand = new Random();</b>
+<b class="fc"><i>40</i>&nbsp;            index = rand.nextInt(colorList.size());</b>
+<i>41</i>&nbsp;        }
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="fc"><i>44</i>&nbsp;            block.changeColor(colorList.get(index));</b>
+<b class="fc"><i>45</i>&nbsp;        }</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    private void putDifferentColors() {
+<b class="fc"><i>49</i>&nbsp;        Random rand = new Random();</b>
+<b class="fc"><i>50</i>&nbsp;        index = rand.nextInt(colorList.size());</b>
+<i>51</i>&nbsp;
+<b class="fc"><i>52</i>&nbsp;        if(line == 0 &amp;&amp; column == 0) {</b>
+<b class="fc"><i>53</i>&nbsp;            matrix_index[line][column] = index;</b>
+<i>54</i>&nbsp;        }
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        else if(line == 0 &amp;&amp; column &gt; 0) {</b>
+<b class="fc"><i>57</i>&nbsp;            while(index == matrix_index[line][column - 1]){</b>
+<b class="fc"><i>58</i>&nbsp;                index = rand.nextInt(colorList.size());</b>
+<i>59</i>&nbsp;            }
+<b class="fc"><i>60</i>&nbsp;            matrix_index[line][column] = index;</b>
+<i>61</i>&nbsp;        }
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        else if(line &gt; 0 &amp;&amp; column == 0) {</b>
+<b class="fc"><i>64</i>&nbsp;            while (index == matrix_index[line - 1][0]){</b>
+<b class="fc"><i>65</i>&nbsp;                index = rand.nextInt(colorList.size());</b>
+<i>66</i>&nbsp;            }
+<b class="fc"><i>67</i>&nbsp;            matrix_index[line][column] = index;</b>
+<i>68</i>&nbsp;        }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;        else {
+<b class="fc"><i>71</i>&nbsp;            while (index == matrix_index[line - 1][column] || index == matrix_index[line][column - 1]) {</b>
+<b class="fc"><i>72</i>&nbsp;                index = rand.nextInt(colorList.size());</b>
+<i>73</i>&nbsp;            }
+<b class="fc"><i>74</i>&nbsp;            matrix_index[line][column] = index;</b>
+<i>75</i>&nbsp;        }
+<i>76</i>&nbsp;
+<b class="fc"><i>77</i>&nbsp;        column++;</b>
+<b class="fc"><i>78</i>&nbsp;        if(column == 7 &amp;&amp; level == 1){</b>
+<b class="fc"><i>79</i>&nbsp;            column = 0;</b>
+<b class="fc"><i>80</i>&nbsp;            if (line &lt; 2)</b>
+<b class="fc"><i>81</i>&nbsp;                line++;</b>
+<i>82</i>&nbsp;        }
+<b class="fc"><i>83</i>&nbsp;        else if(column == 32 &amp;&amp; level == 2) {</b>
+<b class="fc"><i>84</i>&nbsp;            column = 0;</b>
+<b class="fc"><i>85</i>&nbsp;            if (line &lt; 14)</b>
+<b class="fc"><i>86</i>&nbsp;                line++;</b>
+<i>87</i>&nbsp;        }
+<b class="fc"><i>88</i>&nbsp;    }</b>
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;    @Override
+<i>91</i>&nbsp;    public void changeColor(Color color) {
+<b class="nc"><i>92</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="nc"><i>93</i>&nbsp;            block.changeColor(color);</b>
+<b class="nc"><i>94</i>&nbsp;        }</b>
+<b class="nc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    @Override
+<i>98</i>&nbsp;    public boolean colorIn(Color color) {
+<b class="fc"><i>99</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="fc"><i>100</i>&nbsp;            if (block.colorIn(color)) {</b>
+<b class="fc"><i>101</i>&nbsp;                return true;</b>
+<i>102</i>&nbsp;            }
+<b class="fc"><i>103</i>&nbsp;        }</b>
+<b class="fc"><i>104</i>&nbsp;        return false;</b>
+<i>105</i>&nbsp;    }
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    @Override
+<i>108</i>&nbsp;    public void notifyHeroChange(Position position) {
+<b class="nc"><i>109</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="nc"><i>110</i>&nbsp;            block.notifyHeroChange(position);</b>
+<b class="nc"><i>111</i>&nbsp;        }</b>
+<b class="nc"><i>112</i>&nbsp;    }</b>
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;    @Override
+<i>115</i>&nbsp;    public void notifyEnemyChange(Position position) {
+<b class="nc"><i>116</i>&nbsp;        for (BlockComposite block : blockList) {</b>
+<b class="nc"><i>117</i>&nbsp;            block.notifyEnemyChange(position);</b>
+<b class="nc"><i>118</i>&nbsp;        }</b>
+<b class="nc"><i>119</i>&nbsp;    }</b>
+<i>120</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>

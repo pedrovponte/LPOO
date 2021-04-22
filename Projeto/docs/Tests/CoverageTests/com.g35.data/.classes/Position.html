@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Position</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.g35.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Position (com.g35.data)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Position</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$8KN4jYv2</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$aUWQ8qhZ</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$HR7W4MWd</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$Mdc4Iola</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$MnGnLxLm</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$nG5HwjQK</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$Nvt0hHp1</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$vwKmAqxf</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$vx4wUAH4</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$wlPs7E5m</td>
+  </tr>
+  <tr>
+    <td class="name">Position$MockitoMock$1502319111$auxiliary$WmBZZ3zD</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.g35.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;public class Position {
+<i>4</i>&nbsp;    private int x;
+<i>5</i>&nbsp;    private int y;
+<i>6</i>&nbsp;
+<b class="fc"><i>7</i>&nbsp;    public Position(int x, int y) {</b>
+<b class="fc"><i>8</i>&nbsp;        this.x = x;</b>
+<b class="fc"><i>9</i>&nbsp;        this.y = y;</b>
+<b class="fc"><i>10</i>&nbsp;    }</b>
+<i>11</i>&nbsp;
+<b class="fc"><i>12</i>&nbsp;    public Position(Position position) {</b>
+<b class="fc"><i>13</i>&nbsp;        this.x = position.x;</b>
+<b class="fc"><i>14</i>&nbsp;        this.y = position.y;</b>
+<b class="fc"><i>15</i>&nbsp;    }</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    public int getX() {
+<b class="fc"><i>18</i>&nbsp;        return x;</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public void setX(int x) {
+<b class="fc"><i>22</i>&nbsp;        this.x = x;</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public int getY() {
+<b class="fc"><i>26</i>&nbsp;        return y;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void setY(int y) {
+<b class="fc"><i>30</i>&nbsp;        this.y = y;</b>
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public Position up() {
+<b class="fc"><i>34</i>&nbsp;        return new Position(this.x, this.y - 1);</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public Position right() {
+<b class="fc"><i>38</i>&nbsp;        return new Position(this.x + 1, this.y);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public Position down() {
+<b class="fc"><i>42</i>&nbsp;        return new Position(this.x, this.y + 1);</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public Position left() {
+<b class="fc"><i>46</i>&nbsp;        return new Position(this.x - 1, this.y);</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public boolean samePosition(Position other) {
+<b class="fc"><i>50</i>&nbsp;        return this.getX() == other.getX() &amp;&amp; this.getY() == other.getY();</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-31 19:54</div>
+</div>
+</body>
+</html>
